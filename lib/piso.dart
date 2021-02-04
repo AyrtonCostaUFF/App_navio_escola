@@ -22,7 +22,7 @@ class _PisoState extends State<Piso> {
         child: Column(
           children: <Widget>[
 
-            Avaliacao(titleCheck:'Material'),
+            Avaliacao(titleCheck:'Materia'),
 
             Avaliacao(titleCheck:'Estado de Conservação'),
                    
