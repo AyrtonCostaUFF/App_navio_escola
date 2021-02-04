@@ -3,10 +3,11 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:primeiro_app/piso.dart';
 
 // Classe que cria a Avaliação padrão.
+// @param: titleCheck 
 class Avaliacao extends StatefulWidget {
-  final String parametro;
+  final String titleCheck;
 
-  const Avaliacao({Key key, this.parametro}) : super(key: key);
+  const Avaliacao({Key key, this.titleCheck}) : super(key: key);
   @override
   _AvaliacaoState createState() => _AvaliacaoState();
 }
@@ -21,7 +22,7 @@ class _AvaliacaoState extends State<Avaliacao> {
       SizedBox(height: 20.0),
       ExpansionTile(
           title: Text(
-            widget.parametro,
+            widget.titleCheck,
             style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
           ),
           children: <Widget>[
@@ -97,38 +98,36 @@ class _CriaState extends State<Cria> {
 }
 
 class Checagem extends StatefulWidget {
-  final String parametro1;
-  final String parametro2;
-  final Piso parametro3;
+  var parametro;
+  var parametros = [];
 
-  const Checagem({Key key, this.parametro1,
-                           this.parametro2, 
-                           this.parametro3}) : super(key: key);
+  Checagem({Key key, this.parametro, this.parametros}) : super(key: key);
   @override
   _ChecagemState createState() => _ChecagemState();
 }
 
 class _ChecagemState extends State<Checagem> {
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-          SizedBox(height: 20),
-          ExpansionTile(
-            title: Text(widget.parametro1,
-              style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-              ),
-              children: <Widget>[
-                ListTile(
-                  title: Text(widget.parametro2, style: TextStyle(fontSize: 22)),
-                  onTap: () {
-                    Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => widget.parametro3)
-                    );
-                  },
-                )
-              ],
-            ),
-      ]
-    );
+    return Column(children: <Widget>[
+      SizedBox(height: 20),
+      ExpansionTile(
+        title: Text(
+          widget.parametro,
+          style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+        ),
+
+        children: <Widget> [
+          for (int cont = 0; cont < widget.parametros.length; cont += 2)
+            ListTile(
+              title: Text(widget.parametros[cont], style: TextStyle(fontSize: 22)),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => widget.parametros[cont + 1]));
+              },
+            ), 
+        ],
+        
+      ),
+    ]);
   }
 }

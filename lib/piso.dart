@@ -22,11 +22,11 @@ class _PisoState extends State<Piso> {
         child: Column(
           children: <Widget>[
 
-            Avaliacao(parametro: 'Material'),
+            Avaliacao(titleCheck:'Material'),
 
-            Avaliacao(parametro:'Estado de Conservação'),
+            Avaliacao(titleCheck:'Estado de Conservação'),
                    
-            Avaliacao(parametro:'Sistema de Drenagem'),
+            Avaliacao(titleCheck:'Sistema de Drenagem'),
                  
           ],
         ),
