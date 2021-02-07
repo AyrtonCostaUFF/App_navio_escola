@@ -30,28 +30,16 @@ class _LoginState extends State<Login> {
                 mainAxisAlignment: MainAxisAlignment.center,
 
                 children: [
-                  Cria(parametro: 'Usuário'),
+                  Cria(titleLabel: 'Usuário'),
 
                   SizedBox(height: 10),
 
-                  Cria(parametro: 'Senha'),
+                  Cria(titleLabel: 'Senha'),
 
                   SizedBox(height: 40),
 
-                  ButtonTheme(
-                    height: 50,
-                    minWidth: 100,
-                    child: RaisedButton(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => Local()
-                          )
-                        );
-                      },
-                      child: Text('Login', style: TextStyle(fontSize: 24)),
-                    ),
-                  ),
+                  Botao(titleButton: 'Login', screen: Local(),)
+                  
                 ],
               ),
             ),

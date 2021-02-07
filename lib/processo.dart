@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'estocagem.dart';
+import 'uteis.dart';
 
 class Processo extends StatefulWidget {
   @override
@@ -28,21 +29,7 @@ class _ProcessoState extends State<Processo>{
                 mainAxisAlignment: MainAxisAlignment.center,
 
                 children: [
-                  ButtonTheme(
-                    height: 50,
-                    minWidth: 170,
-                    child: RaisedButton(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => Estocagem()
-                          )
-                        );
-                      },
-                      child: Text('Estocagem',
-                      style: TextStyle(fontSize: 24))
-                    ),
-                  ),
+                  Botao(titleButton: 'Estocagem', screen: Estocagem(),),
                   
                   SizedBox(height: 30),
 

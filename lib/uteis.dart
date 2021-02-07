@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:primeiro_app/piso.dart';
 
 // Classe que cria a Avaliação padrão.
-// @param: titleCheck 
+// @param: titleCheck - título da tela de avaliação.
 class Avaliacao extends StatefulWidget {
   final String titleCheck;
 
@@ -69,17 +68,18 @@ class _AvaliacaoState extends State<Avaliacao> {
                 },
               ),
             ),
-            Cria(parametro: 'Grau'),
+            Cria(titleLabel: 'Grau'),
           ]),
     ]);
   }
 }
 
 // Classe que cria Label com o texto passado como parâmetro.
+// @param titleLabel: título do Label.
 class Cria extends StatefulWidget {
-  final String parametro;
+  final String titleLabel;
 
-  const Cria({Key key, this.parametro}) : super(key: key);
+  const Cria({Key key, this.titleLabel}) : super(key: key);
   @override
   _CriaState createState() => _CriaState();
 }
@@ -91,17 +91,20 @@ class _CriaState extends State<Cria> {
         obscureText: true,
         style: TextStyle(fontSize: 22),
         decoration: InputDecoration(
-            labelText: widget.parametro, border: OutlineInputBorder()),
+            labelText: widget.titleLabel, border: OutlineInputBorder()),
       ),
     ]);
   }
 }
 
+// Classe que cria a tela da lista de checagem
+// @param title: título da tela
+// @poram
 class Checagem extends StatefulWidget {
-  var parametro;
-  var parametros = [];
+  var title;
+  var parameters = [];
 
-  Checagem({Key key, this.parametro, this.parametros}) : super(key: key);
+  Checagem({Key key, this.title, this.parameters}) : super(key: key);
   @override
   _ChecagemState createState() => _ChecagemState();
 }
@@ -112,22 +115,92 @@ class _ChecagemState extends State<Checagem> {
       SizedBox(height: 20),
       ExpansionTile(
         title: Text(
-          widget.parametro,
+          widget.title,
           style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
         ),
-
-        children: <Widget> [
-          for (int cont = 0; cont < widget.parametros.length; cont += 2)
+        children: <Widget>[
+          for (int cont = 0; cont < widget.parameters.length; cont += 2)
             ListTile(
-              title: Text(widget.parametros[cont], style: TextStyle(fontSize: 22)),
+              title:
+                  Text(widget.parameters[cont], style: TextStyle(fontSize: 22)),
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => widget.parametros[cont + 1]));
+                    builder: (context) => widget.parameters[cont + 1]));
               },
-            ), 
+            ),
         ],
-        
       ),
     ]);
+  }
+}
+
+// Classe que recebe os títulos da lista de checagem e chama a classe Avaliacao
+// para construir a lista com os títulos passados.
+// @param: titleRated - título da lista de checagem.
+// @param: titles - subtítulos da lista de checagem.
+class Avaliado extends StatefulWidget {
+  final String titleRated;
+  var titles = [];
+
+  Avaliado({Key key, this.titleRated, this.titles}) : super(key: key);
+  @override
+  _AvaliadoState createState() => _AvaliadoState();
+}
+
+class _AvaliadoState extends State<Avaliado> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            widget.titleRated,
+          ),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30.0),
+          child: Column(
+            children: <Widget>[
+              for (int cont = 0; cont < widget.titles.length; cont += 1)
+                Avaliacao(titleCheck: widget.titles[cont]),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Botao extends StatefulWidget {
+  final String titleButton;
+  var screen;
+
+  Botao({Key key, this.titleButton, this.screen}) : super(key: key);
+  @override
+  _BotaoState createState() => _BotaoState();
+}
+
+class _BotaoState extends State<Botao> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [ 
+        ButtonTheme(
+          height: 50,
+          minWidth: 170,
+          child: RaisedButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => widget.screen
+                )
+              );
+            },
+            child: Text(widget.titleButton,
+            style: TextStyle(fontSize: 24))
+          ),
+        ),
+      ]
+    );
   }
 }

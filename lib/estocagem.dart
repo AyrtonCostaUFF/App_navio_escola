@@ -23,20 +23,55 @@ class _EstocagemState extends State<Estocagem> {
         child: Column(
           children: <Widget>[
 
-            Checagem(parametro: 'Estrutura',
-                    parametros: ['Pisos', Piso(), 'Tetos', Piso(),
-                                 'Paredes e Divisórias', Piso(),
-                                 'Portas', Piso(),
-                                 'Janelas e aberturas', Piso()],),
+            Checagem(
+              title: 'Estrutura',
+              parameters: [
+                'Pisos', Avaliado(
+                  titleRated: 'Pisos', 
+                  titles: [
+                    'Material', 'Estado de Conservação','Sistema de Drenagem'
+                  ],
+                ),
+
+                'Tetos', Avaliado(
+                  titleRated: 'Tetos',
+                  titles: [
+                    'Acabamento', 'Estado de Conservação'
+                  ],
+                ),
+
+                'Paredes e Divisórias', Avaliado(
+                  titleRated: 'Paredes e Divisórias',
+                  titles: [
+                    'Acabamento', 'Estado de Conservação', 'Angulos'
+                  ],
+                ),
+
+                'Portas', Avaliado( 
+                  titleRated: 'Portas',
+                  titles: [
+                    'Superfície', 'Fechamento automático de portas','Barreiras',
+                    'Estado de Conservação'
+                  ],
+                ),
+
+                'Janelas e aberturas', Avaliado(
+                  titleRated: 'Janelas e aberturas',                  
+                  titles: [
+                    'Superfície', 'Proteção', 'Estado de Conservação',
+                  ],
+                ),
+              ],
+            ),
                                   
-            Checagem(parametro: 'Higienização',
-                    parametros: ['Pisos', Piso()],),
+            Checagem(title: 'Higienização',
+                    parameters: ['Pisos', Avaliado()],),
 
-            Checagem(parametro: 'Higienização',
-                    parametros: ['Pisos', Piso()],),
+            Checagem(title: 'Controle de Vetores e Pragas',
+                    parameters: ['Pisos', Avaliado()],),
 
-            Checagem(parametro: 'Higienização',
-                    parametros: ['Pisos', Piso()],)
+            Checagem(title: 'Matérias-primas',
+                    parameters: ['Pisos', Avaliado()],)
 
           ],
         ),
