@@ -8,7 +8,6 @@ class Estocagem extends StatefulWidget {
 }
 
 class _EstocagemState extends State<Estocagem> {
-   
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,27 +16,42 @@ class _EstocagemState extends State<Estocagem> {
         title: Text(
           'Estocagem',
         ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context, false),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
         child: Column(
           children: <Widget>[
-
-            Checagem(parametro: 'Estrutura',
-                    parametros: ['Pisos', Piso(), 'Tetos', Piso(),
-                                 'Paredes e Divisórias', Piso(),
-                                 'Portas', Piso(),
-                                 'Janelas e aberturas', Piso()],),
-                                  
-            Checagem(parametro: 'Higienização',
-                    parametros: ['Pisos', Piso()],),
-
-            Checagem(parametro: 'Higienização',
-                    parametros: ['Pisos', Piso()],),
-
-            Checagem(parametro: 'Higienização',
-                    parametros: ['Pisos', Piso()],)
-
+            Checagem(
+              parametro: 'Estrutura',
+              parametros: [
+                'Pisos',
+                Piso(),
+                'Tetos',
+                Piso(),
+                'Paredes e Divisórias',
+                Piso(),
+                'Portas',
+                Piso(),
+                'Janelas e aberturas',
+                Piso()
+              ],
+            ),
+            Checagem(
+              parametro: 'Higienização',
+              parametros: ['Pisos', Piso()],
+            ),
+            Checagem(
+              parametro: 'Higienização',
+              parametros: ['Pisos', Piso()],
+            ),
+            Checagem(
+              parametro: 'Higienização',
+              parametros: ['Pisos', Piso()],
+            )
           ],
         ),
       ),
