@@ -16,18 +16,18 @@ class _PisoState extends State<Piso> {
         title: Text(
           'Piso',
         ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context, false),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30.0),
         child: Column(
           children: <Widget>[
-
-            Avaliacao(titleCheck:'Material'),
-
-            Avaliacao(titleCheck:'Estado de Conservação'),
-                   
-            Avaliacao(titleCheck:'Sistema de Drenagem'),
-                 
+            Avaliacao(titleCheck: 'Material'),
+            Avaliacao(titleCheck: 'Estado de Conservação'),
+            Avaliacao(titleCheck: 'Sistema de Drenagem'),
           ],
         ),
       ),
