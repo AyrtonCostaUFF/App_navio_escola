@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:primeiro_app/uteis.dart';
-import 'piso.dart';
+
 
 class Estocagem extends StatefulWidget {
   @override
@@ -16,6 +16,10 @@ class _EstocagemState extends State<Estocagem> {
       appBar: AppBar(
         title: Text(
           'Estocagem',
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context, false),
         ),
       ),
       body: Padding(

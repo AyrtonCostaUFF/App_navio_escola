@@ -156,6 +156,10 @@ class _AvaliadoState extends State<Avaliado> {
           title: Text(
             widget.titleRated,
           ),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () => Navigator.pop(context, false),
+          ),
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30.0),

@@ -15,8 +15,12 @@ class _ProcessoState extends State<Processo>{
         appBar: AppBar(
           title: Text('Processo', 
           ), 
-      
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () => Navigator.pop(context, false),
+          ),
         ),
+       
         body: Align(
           child: SizedBox(
           width: double.infinity,
