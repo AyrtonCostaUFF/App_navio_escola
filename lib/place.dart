@@ -1,51 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:primeiro_app/uteis.dart';
-import 'local.dart';
+import 'process.dart';
 import 'uteis.dart';
+import 'resources/strings.dart';
 
-class Login extends StatefulWidget {
+
+class Place extends StatefulWidget {
   @override
-  _LoginState createState() => _LoginState();
+  _PlaceState createState() => _PlaceState();
 }
 
-class _LoginState extends State<Login> {
+
+class _PlaceState extends State<Place> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+
         appBar: AppBar(
           title: Text(
-            'Login',
+            Strings.title_place,
+          ),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () => Navigator.pop(context, false),
           ),
         ),
-            
+
         body: Align(
           child: SizedBox(
             width: double.infinity,
             height: double.infinity,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-
                 children: [
-                  Cria(titleLabel: 'Usuário'),
-
-                  SizedBox(height: 10),
-
-                  Cria(titleLabel: 'Senha'),
-
-                  SizedBox(height: 40),
-
-                  Botao(titleButton: 'Login', screen: Local(),)
-                  
+                  Botao(titleButton: Strings.place_button, screen: Process()),
                 ],
               ),
             ),
           ),
-        )
-      )
+        ),
+
+      ),
     );
   }
 }

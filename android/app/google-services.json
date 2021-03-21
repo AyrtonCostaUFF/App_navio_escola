@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "610998274124",
+    "project_id": "navio-escola-uff",
+    "storage_bucket": "navio-escola-uff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:610998274124:android:5bcaa297c50ca187a90ce9",
+        "android_client_info": {
+          "package_name": "com.example.primeiro_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "610998274124-iahtns0v1guumm8ppqee70513qs4ojse.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPvnsWhHVK413NPMJOCjqxvD_JlcKHG_U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "610998274124-iahtns0v1guumm8ppqee70513qs4ojse.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

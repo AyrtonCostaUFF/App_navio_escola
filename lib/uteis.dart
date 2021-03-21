@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 // Classe que cria a Avaliação padrão.
 // @param: titleCheck - título da tela de avaliação.
 class Avaliacao extends StatefulWidget {
+  final String title;
   final String titleCheck;
 
-  const Avaliacao({Key key, this.titleCheck}) : super(key: key);
+  const Avaliacao({Key key, this.title, this.titleCheck}) : super(key: key);
   @override
   _AvaliacaoState createState() => _AvaliacaoState();
 }
@@ -38,8 +40,12 @@ class _AvaliacaoState extends State<Avaliacao> {
                 color: Colors.amber,
               ),
               onRatingUpdate: (rating) {
-                print(rating);
+                Firestore.instance
+                    .collection("resposta")
+                    .document(widget.title + widget.titleCheck)
+                    .setData({"star": rating});
               },
+              updateOnDrag: false,
             ),
             ListTile(
               title: const Text(
@@ -65,6 +71,10 @@ class _AvaliacaoState extends State<Avaliacao> {
                   setState(() {
                     _character = value;
                   });
+                Firestore.instance
+                    .collection("resposta")
+                    .document(widget.title + widget.titleCheck)
+                    .updateData({"respostaRadio": _character});
                 },
               ),
             ),
@@ -85,9 +95,12 @@ class Cria extends StatefulWidget {
 }
 
 class _CriaState extends State<Cria> {
+  TextEditingController _emailController;
+
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
       TextField(
+        controller: _emailController,
         obscureText: true,
         style: TextStyle(fontSize: 22),
         decoration: InputDecoration(
@@ -166,7 +179,10 @@ class _AvaliadoState extends State<Avaliado> {
           child: Column(
             children: <Widget>[
               for (int cont = 0; cont < widget.titles.length; cont += 1)
-                Avaliacao(titleCheck: widget.titles[cont]),
+                Avaliacao(
+                  title: widget.titleRated, 
+                  titleCheck: widget.titles[cont]
+                ),
             ],
           ),
         ),
@@ -187,24 +203,17 @@ class Botao extends StatefulWidget {
 class _BotaoState extends State<Botao> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [ 
-        ButtonTheme(
-          height: 50,
-          minWidth: 170,
-          child: RaisedButton(
+    return Column(children: [
+      ButtonTheme(
+        height: 50,
+        minWidth: 170,
+        child: ElevatedButton(
             onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => widget.screen
-                )
-              );
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => widget.screen));
             },
-            child: Text(widget.titleButton,
-            style: TextStyle(fontSize: 24))
-          ),
-        ),
-      ]
-    );
+            child: Text(widget.titleButton, style: TextStyle(fontSize: 24))),
+      ),
+    ]);
   }
 }
